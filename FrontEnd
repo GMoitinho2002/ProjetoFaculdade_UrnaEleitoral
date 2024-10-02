@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eleições Municipais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #002776; 
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #002776; 
+            padding: 20px;
+            text-align: center;
+            color: white; 
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            color: #002776;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #002776; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #002776; 
+            color: #ffffff;
+        }
+        footer {
+            background-color: #002776; /* Amarelo da bandeira */
+            padding: 10px;
+            color: #ffffff;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Eleições Municipais - Brasil</h1>
+    </header>
+
+    <div class="container">
+        <h2>Escolha um candidato para votar:</h2>
+        <button onclick="votar(1)">Candidato A</button>
+        <button onclick="votar(2)">Candidato B</button>
+        <button onclick="votar(3)">Candidato C</button>
+        <button onclick="votar(4)">Anular voto</button>
+        <button onclick="votar(5)">Votar em branco</button>
+        <button onclick="encerrar()">Encerrar votação</button>
+
+        <h3 id="resultado"></h3>
+        <div id="detalhes"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Eleições Municipais - Brasil</p>
+    </footer>
+
+    <script>
+        let candidatoA = 0;
+        let candidatoB = 0;
+        let candidatoC = 0;
+        let votosNulos = 0;
+        let votosBrancos = 0;
+
+        function votar(voto) {
+            switch(voto) {
+                case 1:
+                    alert("Você votou no Candidato A");
+                    candidatoA++;
+                    break;
+                case 2:
+                    alert("Você votou no Candidato B");
+                    candidatoB++;
+                    break;
+                case 3:
+                    alert("Você votou no Candidato C");
+                    candidatoC++;
+                    break;
+                case 4:
+                    alert("Você anulou seu voto");
+                    votosNulos++;
+                    break;
+                case 5:
+                    alert("Você votou em branco");
+                    votosBrancos++;
+                    break;
+                default:
+                    alert("Voto inválido!");
+            }
+        }
+
+        function encerrar() {
+            let totalVotos = candidatoA + candidatoB + candidatoC + votosNulos + votosBrancos;
+            let vencedor = "Empate entre candidatos";
+
+            if (candidatoA > candidatoB && candidatoA > candidatoC) {
+                vencedor = "Candidato A";
+            } else if (candidatoB > candidatoA && candidatoB > candidatoC) {
+                vencedor = "Candidato B";
+            } else if (candidatoC > candidatoA && candidatoC > candidatoB) {
+                vencedor = "Candidato C";
+            }
+
+            document.getElementById("resultado").innerHTML = "Candidato vitorioso: " + vencedor;
+            document.getElementById("detalhes").innerHTML = `
+                <p>Quantidade de votos A: ${candidatoA}</p>
+                <p>Quantidade de votos B: ${candidatoB}</p>
+                <p>Quantidade de votos C: ${candidatoC}</p>
+                <p>Quantidade de votos em branco: ${votosBrancos}</p>
+                <p>Quantidade de votos nulos: ${votosNulos}</p>
+                <p>Total de votos: ${totalVotos}</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>
