@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h> 
+
+int main() 
+{
+    int candidatoA = 0, candidatoB = 0, candidatoC = 0, votosNulos = 0, votosBrancos = 0, voto = 0, totalVotos;
+
+    while (voto != 6) {
+        system("clear");  
+        printf("Eleições Municipais\n\n");
+        printf("1 - Candidato A\n");
+        printf("2 - Candidato B\n");
+        printf("3 - Candidato C\n");
+        printf("4 - Anular voto\n");
+        printf("5 - Votar em branco\n");
+        printf("6 - Para encerrar\n");
+        printf("\nEscolha um candidato: ");
+        scanf("%d", &voto);
+
+        switch (voto) {
+            case 1:
+                printf("Candidato A\n");
+                candidatoA++;
+                sleep(1);  
+                break;
+            case 2:
+                printf("Candidato B\n");
+                candidatoB++;
+                sleep(1);
+                break;
+            case 3:
+                printf("Candidato C\n");
+                candidatoC++;
+                sleep(1);
+                break;
+            case 4:
+                printf("Anular voto\n");
+                votosNulos++;
+                sleep(1);
+                break;
+            case 5:
+                printf("Voto em branco\n");
+                votosBrancos++;
+                sleep(1);
+                break;
+            case 6:
+                printf("\n\nResultado:\n\n");
+                sleep(1);
+                break;
+            default:
+                printf("Voto inválido!!!\n");
+                sleep(1);
+                break;
+        }
+    }
+
+    totalVotos = candidatoA + candidatoB + candidatoC + votosNulos + votosBrancos;
+    
+    printf("Candidato vitorioso: ");
+    
+    if (candidatoA > candidatoB && candidatoA > candidatoC) {
+        printf("Candidato A\n");
+    } else if (candidatoB > candidatoA && candidatoB > candidatoC) {
+        printf("Candidato B\n");
+    } else if (candidatoC > candidatoA && candidatoC > candidatoB) {
+        printf("Candidato C\n");
+    } else {
+        printf("Empate entre candidatos.\n");
+    }
+    
+    printf("\nQuantidade de votos A: %d\n", candidatoA);
+    printf("Quantidade de votos B: %d\n", candidatoB);
+    printf("Quantidade de votos C: %d\n", candidatoC);
+    printf("Quantidade de votos em branco: %d\n", votosBrancos);
+    printf("Quantidade de votos nulos: %d\n", votosNulos);
+    printf("Total de votos: %d\n", totalVotos);
+
+    return 0;
+}
